@@ -48,8 +48,5 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillText(name, histoX + columnIndent * i, bottomY + 18);
   }
 };
-var canvas = document.querySelector('canvas');
+var canvas = document.querySelector('canvas');  // сделаем вызов функции, посмотреть
 renderStatistics(canvas.getContext('2d'), ['Иван', 'Игнат', 'Вы', 'Максимилиан'], [200.15, 418.32, 120.90, 316.1]);
-
-
-
