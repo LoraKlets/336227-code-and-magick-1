@@ -9,9 +9,9 @@ window.renderStatistics = function (ctx, names, times) {
   var drawText = function (text, x, y) {
     ctx.fillStyle = '#000';
     ctx.font = '16px PT Mono';
-    ctx.fillText(text, x, y);  
+    ctx.fillText(text, x, y);
   };
-  
+
   drawRect('rgba(0, 0, 0, 0.7)', 20, 30, 420, 270);
 
   drawRect('rgba(255, 255, 255, 1.0)', 10, 10, 420, 270);
