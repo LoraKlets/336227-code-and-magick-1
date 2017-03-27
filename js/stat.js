@@ -47,7 +47,7 @@ window.renderStatistics = function (ctx, names, times) {
     if (lengthOfName < 5) {
       for (var j = 0; j < Math.floor((5 - lengthOfName) / 2); j++) {
         name = ' ' + name;
-      } 
+      }
     }
     ctx.fillText(name, histoX + columnIndent * i, bottomY + 18);
   }
