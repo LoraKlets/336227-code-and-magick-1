@@ -5,16 +5,20 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = colorRect;
     ctx.fillRect(x, y, width, height);
   };
+
+  var drawText = function (text, x, y) {
+    ctx.fillStyle = '#000';
+    ctx.font = '16px PT Mono';
+    ctx.fillText(text, x, y);  
+  };
+  
   drawRect('rgba(0, 0, 0, 0.7)', 20, 30, 420, 270);
 
-  ctx.fillStyle = 'rgba(256, 256, 256, 1.0)';
-  ctx.fillRect(10, 10, 420, 270);
-  ctx.strokeRect(10, 10, 420, 270);
+  drawRect('rgba(255, 255, 255, 1.0)', 10, 10, 420, 270);
 
-  ctx.fillStyle = '#000';
-  ctx.font = '16px PT Mono';
-  ctx.fillText('Ура, вы победили!', 25, 35);
-  ctx.fillText('Список результатов:', 25, 56);
+  drawText('Ура, вы победили!', 25, 35);
+
+  drawText('Список результатов:', 25, 56);
 
   var max = -1;
 
@@ -40,8 +44,8 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       drawRect('rgba(0, 0, 255, ' + Math.random().toFixed(1) + ')', histoX + columnIndent * i, bottomY - height, histoWidth, height);
     }
-    ctx.fillStyle = '#000';
-    ctx.fillText(times[i].toFixed(0), histoX + columnIndent * i, bottomY - height - 6);
+    drawText(times[i].toFixed(0), histoX + columnIndent * i, bottomY - height - 6);
+
     // попробуем написать имя по центру столбика, считая, что по ширине столбика помещаются 6 букв
     var lengthOfName = name.length;
     if (lengthOfName < 5) {
@@ -49,6 +53,6 @@ window.renderStatistics = function (ctx, names, times) {
         name = ' ' + name;
       }
     }
-    ctx.fillText(name, histoX + columnIndent * i, bottomY + 18);
+    drawText(name, histoX + columnIndent * i, bottomY + 18);
   }
 };
