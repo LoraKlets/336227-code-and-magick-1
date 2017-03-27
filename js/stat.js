@@ -12,7 +12,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.strokeRect(10, 10, 420, 270);
   
   ctx.fillStyle = '#000';
-  ctx.font = '14px PT Mono';
+  ctx.font = '16px PT Mono';
   ctx.fillText('Ура, вы победили!', 25, 35);
   ctx.fillText('Список результатов:', 25, 56);
   
