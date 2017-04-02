@@ -1,13 +1,13 @@
 'use strict';
- 
+
 var userDialog = document.querySelector('.setup');
- userDialog.classList.remove('hidden');
+userDialog.classList.remove('hidden');
 
 document.querySelector('.setup-similar').classList.remove('hidden');
 var getRandomElement = function (array) {
   var randomElementIndex = Math.floor(Math.random() * array.length);
-    return randomElementIndex;
-  };
+  return randomElementIndex;
+};
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
@@ -16,10 +16,10 @@ var WIZARD_SECONDNAMES = ['да Марья', 'Верон', 'Мирабелла',
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var wizards = [
-    {name: 'Иван',coatColor: '', eyesColor: ''},
-    {name: 'Иван',coatColor: '', eyesColor: ''},
-    {name: 'Иван',coatColor: '', eyesColor: ''},
-    {name: 'Иван',coatColor: '', eyesColor: ''}
+    {name: 'Иван', coatColor: '', eyesColor: ''},
+    {name: 'Иван', coatColor: '', eyesColor: ''},
+    {name: 'Иван', coatColor: '', eyesColor: ''},
+    {name: 'Иван', coatColor: '', eyesColor: ''}
 ];
 
 for (var i = 0; i < 4; i++) {
@@ -29,15 +29,11 @@ for (var i = 0; i < 4; i++) {
 }
 
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < 4; i++) {
+for (i = 0; i < 4; i++) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  
   wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
   wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
   wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
   fragment.appendChild(wizardElement);
 }
 similarListElement.appendChild(fragment);
-
-
-
