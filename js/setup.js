@@ -22,7 +22,7 @@ var wizards = [
     {name: 'Иван', coatColor: '', eyesColor: ''}
 ];
 
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < wizards.length; i++) {
   wizards[i].name = WIZARD_FIRSTNAMES[getRandomElement(WIZARD_FIRSTNAMES)] + ' ' + WIZARD_SECONDNAMES[getRandomElement(WIZARD_SECONDNAMES)];
   wizards[i].coatColor = COAT_COLORS[getRandomElement(COAT_COLORS)];
   wizards[i].eyesColor = EYES_COLORS[getRandomElement(EYES_COLORS)];
@@ -35,7 +35,7 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 var fragment = document.createDocumentFragment();
-for (i = 0; i < 4; i++) {
+for (i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
 }
 similarListElement.appendChild(fragment);
