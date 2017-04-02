@@ -3,12 +3,12 @@
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
-document.querySelector('.setup-similar').classList.remove('hidden');
+
 var getRandomElement = function (array) {
   var randomElementIndex = Math.floor(Math.random() * array.length);
   return randomElementIndex;
 };
-var similarListElement = document.querySelector('.setup-similar-list');
+var similarListElement = userDialog.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
 var WIZARD_FIRSTNAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -27,13 +27,16 @@ for (var i = 0; i < 4; i++) {
   wizards[i].coatColor = COAT_COLORS[getRandomElement(COAT_COLORS)];
   wizards[i].eyesColor = EYES_COLORS[getRandomElement(EYES_COLORS)];
 }
-
+var renderWizard = function (wizard) {
+  var wizardElement = similarWizardTemplate.cloneNode(true);
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  return wizardElement;  
+};
 var fragment = document.createDocumentFragment();
 for (i = 0; i < 4; i++) {
-  var wizardElement = similarWizardTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
-  fragment.appendChild(wizardElement);
+  fragment.appendChild(renderWizard(wizards[i]));
 }
 similarListElement.appendChild(fragment);
+userDialog.querySelector('.setup-similar').classList.remove('hidden');
