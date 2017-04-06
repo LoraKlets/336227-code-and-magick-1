@@ -32,7 +32,7 @@ setupClose.addEventListener('click', function () {
 
 setupClose.addEventListener('keydown', function (evt) {
   if (isActivateEvent(evt)) {
-    setup.classList.add('hidden');  
+    setup.classList.add('hidden');
     document.removeEventListener('keydown', setupKeydownHandler);
   }
 });
@@ -46,9 +46,9 @@ setupSubmit.addEventListener('click', function () {
 });
 setupSubmit.addEventListener('keydown', function (evt) {
   if (isActivateEvent(evt)) {
-    setup.classList.add('hidden');  
+    setup.classList.add('hidden');
     document.removeEventListener('keydown', setupKeydownHandler);
-  }  
+  }
 });
 // Валидация ввода имени персонажа средствами HTML5
 var wizardName = document.querySelector('.setup-user-name');
@@ -68,19 +68,19 @@ var getRandomElementExcept = function (array, currentElement) {
 };
 
 var colorizeElement = function (element, colors, property) {
-    var currentColor = element.style[property];
-    element.style[property] = colors[getRandomElementExcept(colors, currentColor)];
-};    
+  var currentColor = element.style[property];
+  element.style[property] = colors[getRandomElementExcept(colors, currentColor)];
+};
 // При нажатии на волшебника меняется цвет его
 // мантии
 var wizardCoat = document.querySelector('.wizard-coat');
 wizardCoat.addEventListener('click', function () {
-   colorizeElement(wizardCoat, COAT_COLORS, 'fill');  
+  colorizeElement(wizardCoat, COAT_COLORS, 'fill');
 });
 
 var wizardEyes = document.querySelector('.wizard-eyes');
-wizardEyes.addEventListener('click',  function () {
-    colorizeElement(wizardEyes, EYES_COLORS, 'fill');
+wizardEyes.addEventListener('click', function () {
+  colorizeElement(wizardEyes, EYES_COLORS, 'fill');
 });
 
 var setupFireball = document.querySelector('.setup-fireball-wrap');
@@ -91,7 +91,7 @@ var fireballColors = [
   '#e848d5',
   '#e6e848'
 ];
-setupFireball.addEventListener('click', function() {
+setupFireball.addEventListener('click', function () {
   colorizeElement(setupFireball, fireballColors, 'background');
 });
 
@@ -112,20 +112,20 @@ var wizards = [
   {name: 'Иван', coatColor: '', eyesColor: ''}
 ];
 for (var i = 0; i < wizards.length; i++) {
-    wizards[i].name = WIZARD_FIRSTNAMES[getRandomElement(WIZARD_FIRSTNAMES)] + ' ' + WIZARD_SECONDNAMES[getRandomElement(WIZARD_SECONDNAMES)];
-    wizards[i].coatColor = COAT_COLORS[getRandomElement(COAT_COLORS)];
-    wizards[i].eyesColor = EYES_COLORS[getRandomElement(EYES_COLORS)];
+  wizards[i].name = WIZARD_FIRSTNAMES[getRandomElement(WIZARD_FIRSTNAMES)] + ' ' + WIZARD_SECONDNAMES[getRandomElement(WIZARD_SECONDNAMES)];
+  wizards[i].coatColor = COAT_COLORS[getRandomElement(COAT_COLORS)];
+  wizards[i].eyesColor = EYES_COLORS[getRandomElement(EYES_COLORS)];
 }
 var renderWizard = function (wizard) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-    return wizardElement;
+  var wizardElement = similarWizardTemplate.cloneNode(true);
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  return wizardElement;
 };
 var fragment = document.createDocumentFragment();
 for (i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizard(wizards[i]));
+  fragment.appendChild(renderWizard(wizards[i]));
 }
 similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
