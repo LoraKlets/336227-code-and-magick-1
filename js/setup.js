@@ -10,6 +10,10 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open-icon');
 var setupClose = setup.querySelector('.setup-close');
 var setupSubmit = setup.querySelector('.setup-submit');
+// Валидация ввода имени персонажа средствами HTML5
+var wizardName = document.querySelector('.setup-user-name');
+wizardName.required = true;
+wizardName.maxLength = 50;
 
 var isActivateEvent = function (evt) {
   return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
@@ -27,11 +31,13 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 setupClose.addEventListener('click', function () {
-  setup.classList.add('hidden');
+  if (wizardName.value.length !== 0) {    
+    setup.classList.add('hidden');
+  }  
 });
 
 setupClose.addEventListener('keydown', function (evt) {
-  if (isActivateEvent(evt)) {
+  if ((isActivateEvent(evt)) && (wizardName.value.length !== 0)) {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', setupKeydownHandler);
   }
@@ -42,18 +48,17 @@ var setupKeydownHandler = function (evt) {
   }
 };
 setupSubmit.addEventListener('click', function () {
-  setup.classList.add('hidden');
+  if (wizardName.value.length !== 0) {
+    setup.classList.add('hidden');
+  }
 });
 setupSubmit.addEventListener('keydown', function (evt) {
-  if (isActivateEvent(evt)) {
+  if ((isActivateEvent(evt)) && (wizardName.value.length !== 0)) {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', setupKeydownHandler);
   }
 });
-// Валидация ввода имени персонажа средствами HTML5
-var wizardName = document.querySelector('.setup-user-name');
-wizardName.required = true;
-wizardName.maxLength = 50;
+
 var getRandomElement = function (array) {
   var randomElementIndex = Math.floor(Math.random() * array.length);
   return randomElementIndex;
@@ -95,10 +100,7 @@ setupFireball.addEventListener('click', function () {
   colorizeElement(setupFireball, fireballColors, 'background');
 });
 
-
 var userDialog = document.querySelector('.setup');
-// userDialog.classList.remove('hidden');
-
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
