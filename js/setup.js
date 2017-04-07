@@ -31,13 +31,15 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 setupClose.addEventListener('click', function () {
-  if (wizardName.value.length !== 0) {
+  var val = wizardName.value.trim();
+  if (val.length !== 0) {
     setup.classList.add('hidden');
   }
 });
 
 setupClose.addEventListener('keydown', function (evt) {
-  if ((isActivateEvent(evt)) && (wizardName.value.length !== 0)) {
+  var val = wizardName.value.trim();
+  if ((isActivateEvent(evt)) && (val.length !== 0)) {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', setupKeydownHandler);
   }
@@ -48,12 +50,16 @@ var setupKeydownHandler = function (evt) {
   }
 };
 setupSubmit.addEventListener('click', function () {
-  if (wizardName.value.length !== 0) {
+  event.preventDefault();
+  var val = wizardName.value.trim();
+  if (val.length !== 0) {
     setup.classList.add('hidden');
   }
 });
 setupSubmit.addEventListener('keydown', function (evt) {
-  if ((isActivateEvent(evt)) && (wizardName.value.length !== 0)) {
+  event.preventDefault();
+  var val = wizardName.value.trim();
+  if ((isActivateEvent(evt)) && (val.length !== 0)) {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', setupKeydownHandler);
   }
