@@ -31,9 +31,9 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 setupClose.addEventListener('click', function () {
-  if (wizardName.value.length !== 0) {    
+  if (wizardName.value.length !== 0) {
     setup.classList.add('hidden');
-  }  
+  }
 });
 
 setupClose.addEventListener('keydown', function (evt) {
