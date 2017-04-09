@@ -32,7 +32,6 @@ setupOpen.addEventListener('keydown', function (evt) {
 
 setupClose.addEventListener('click', function () {
   setup.classList.add('hidden');
-  
 });
 
 setupClose.addEventListener('keydown', function (evt) {
