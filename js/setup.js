@@ -31,15 +31,12 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 setupClose.addEventListener('click', function () {
-  var val = wizardName.value.trim();
-  if (val.length !== 0) {
-    setup.classList.add('hidden');
-  }
+  setup.classList.add('hidden');
+  
 });
 
 setupClose.addEventListener('keydown', function (evt) {
-  var val = wizardName.value.trim();
-  if ((isActivateEvent(evt)) && (val.length !== 0)) {
+  if (isActivateEvent(evt)) {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', setupKeydownHandler);
   }
