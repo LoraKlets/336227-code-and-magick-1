@@ -62,17 +62,17 @@ setupSubmit.addEventListener('keydown', function (evt) {
 });
 
 var wizardCoat = document.querySelector('.wizard-coat');
-window.colorizeElement(wizardCoat, COAT_COLORS,function (color) {
-   wizardCoat.style.fill = color;
+window.colorizeElement(wizardCoat, COAT_COLORS, function (color) {
+  wizardCoat.style.fill = color;
 });
 
 var wizardEyes = document.querySelector('.wizard-eyes');
 window.colorizeElement(wizardEyes, EYES_COLORS, function (color) {
-   wizardEyes.style.fill = color;
+  wizardEyes.style.fill = color;
 });
 
 var setupFireball = document.querySelector('.setup-fireball-wrap');
 window.colorizeElement(setupFireball, fireballColors, function (color) {
-   setupFireball.style.backgroundColor = color;
+  setupFireball.style.backgroundColor = color;
 });
 
