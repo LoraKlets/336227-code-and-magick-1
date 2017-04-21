@@ -9,6 +9,7 @@ var fireballColors = [
   '#e848d5',
   '#e6e848'
 ];
+var initCoords;
 // При нажатии на блок .setup-open нужно
 // убрать класс hidden у  .setup
 var setup = document.querySelector('.setup');
@@ -17,26 +18,36 @@ var setupClose = setup.querySelector('.setup-close');
 var setupSubmit = setup.querySelector('.setup-submit');
 // Валидация ввода имени персонажа средствами HTML5
 var wizardName = document.querySelector('.setup-user-name');
-
-setupOpen.addEventListener('click', function () {
+var onSetupOpen = function () {
   setup.classList.remove('hidden');
   window.similarWizards();
+  initCoords = {
+    x: setup.offsetLeft,
+    y: setup.offsetTop
+  };
+};
+var onSetupClose = function () {
+  setup.style.left = initCoords.x + 'px';
+  setup.style.top = initCoords.y + 'px';
+  setup.classList.add('hidden');
+};
+setupOpen.addEventListener('click', function () {
+  onSetupOpen();
 });
 
 setupOpen.addEventListener('keydown', function (evt) {
   if (window.utils.isActivateEvent(evt)) {
-    setup.classList.remove('hidden');
+    onSetupOpen();
     document.addEventListener('keydown', setupKeydownHandler);
-    window.similarWizards();
   }
 });
 setupClose.addEventListener('click', function () {
-  setup.classList.add('hidden');
+  onSetupClose();
 });
 
 setupClose.addEventListener('keydown', function (evt) {
   if (window.utils.isActivateEvent(evt)) {
-    setup.classList.add('hidden');
+    onSetupClose();
     document.removeEventListener('keydown', setupKeydownHandler);
   }
 });
@@ -76,3 +87,42 @@ window.colorizeElement(setupFireball, fireballColors, function (color) {
   setupFireball.style.backgroundColor = color;
 });
 
+var shopElement = document.querySelector('.setup-artifacts-shop');
+var draggedItem = null;
+var artifactsElement = document.querySelector('.setup-artifacts');
+
+shopElement.addEventListener('dragstart', function (evt) {
+  if (evt.target.tagName.toLowerCase() === 'img') {
+    draggedItem = evt.target;
+    evt.dataTransfer.setData('text/plain', evt.target.alt);
+    artifactsElement.setAttribute('style', 'outline: 2px dashed red;');
+  }
+});
+
+artifactsElement.addEventListener('dragover', function (evt) {
+  evt.preventDefault();
+  return false;
+});
+artifactsElement.addEventListener('drop', function (evt) {
+  if (evt.target.children.length === 0) {
+    evt.target.style.backgroundColor = '';
+    evt.target.appendChild(draggedItem.cloneNode(true));
+  }
+  artifactsElement.setAttribute('style', 'outline: 0;');
+});
+
+
+artifactsElement.addEventListener('dragenter', function (evt) {
+  if (evt.target.children.length === 0) {
+    evt.target.style.backgroundColor = 'yellow';
+  } else {
+    evt.target.style.backgroundColor = '';
+  }
+  artifactsElement.setAttribute('style', 'outline: 2px dashed red;');
+  evt.preventDefault();
+});
+
+artifactsElement.addEventListener('dragleave', function (evt) {
+  evt.target.style.backgroundColor = '';
+  evt.preventDefault();
+});
